@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerBall : MonoBehaviour
 {
-    Rigidbody rigid;
+ Rigidbody rigid;
+ float jumpPower = 10;
     void Awake() 
     {
         rigid = GetComponent<Rigidbody>();
     }
-
+ void Update() 
+ {
+    if(Input.GetButtonDown("Jump"))
+    {
+        rigid.AddForce(new Vector3(0,jumpPower,0),ForceMode.Impulse);
+    }
+}
     void FixedUpdate()
     {
         float h =Input.GetAxisRaw("Horizontal");
