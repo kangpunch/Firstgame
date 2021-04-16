@@ -6,6 +6,7 @@ public class PlayerBall : MonoBehaviour
 {
  Rigidbody rigid;
  public float jumpPower;
+ public int itemCount;
  bool isJump;
     void Awake() 
     {
@@ -26,5 +27,10 @@ public class PlayerBall : MonoBehaviour
         float h =Input.GetAxisRaw("Horizontal");
         float v =Input.GetAxisRaw("Vertical");
         rigid.AddForce(new Vector3(h,0,v),ForceMode.Impulse);
+    }
+    private void OnCollisionEnter(Collision collision) 
+    {
+        if(collision.gameObject.name == "Floor") 
+           isJump = false;
     }
 }
