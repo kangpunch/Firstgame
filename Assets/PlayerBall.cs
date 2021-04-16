@@ -5,16 +5,20 @@ using UnityEngine;
 public class PlayerBall : MonoBehaviour
 {
  Rigidbody rigid;
- float jumpPower = 10;
+ public float jumpPower;
+ bool isJump;
     void Awake() 
     {
+        isJump = false;
         rigid = GetComponent<Rigidbody>();
     }
  void Update() 
  {
-    if(Input.GetButtonDown("Jump"))
+    if(Input.GetButtonDown("Jump")&&!isJump)
     {
+        isJump =true;
         rigid.AddForce(new Vector3(0,jumpPower,0),ForceMode.Impulse);
+        
     }
 }
     void FixedUpdate()
